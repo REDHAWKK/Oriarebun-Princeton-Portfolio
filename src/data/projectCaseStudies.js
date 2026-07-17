@@ -4,9 +4,8 @@ export const projectCaseStudies = [
     title: "Osatofo God's Children School",
     client: "Osatofo God's Children School",
     website: 'https://osatofogcs.com.ng',
-    year: '2025',
     heroBadge: 'Primary School Website',
-    stack: ['Html5', 'TailwindCSS', 'Vanilla Javascript'],
+    stack: ['Html5', 'TailwindCSS', 'Javascript'],
     shortDescription:
       'A welcoming landing page website for a primary school in Nigeria with clear admissions content and program information.',
     summary:

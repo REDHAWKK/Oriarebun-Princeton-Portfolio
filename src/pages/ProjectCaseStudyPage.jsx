@@ -46,23 +46,17 @@ export default function ProjectCaseStudyPage() {
         </Link>
 
         <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#D4AF37]/15 via-black to-black p-8 shadow-[0_0_80px_rgba(212,175,55,0.12)] md:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-[#D4AF37]">{project.heroBadge}</p>
-              <h1 className="mt-4 text-4xl font-serif leading-tight md:text-5xl lg:text-6xl">{project.title}</h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">{project.shortDescription}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href={project.website} target="_blank" rel="noreferrer" className="rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-black transition hover:opacity-90">
-                  Visit website
-                </a>
-                <span className="rounded-full border border-white/15 px-5 py-3 text-sm uppercase tracking-[0.2em] text-white/60">
-                  {project.year} • {project.stack.join(' • ')}
-                </span>
-              </div>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-white/10 bg-black/40 p-6 backdrop-blur">
-              <img src={project.coverImage} alt={project.title} className="h-[280px] w-full rounded-[1rem] object-cover" />
+          <div className="flex flex-col items-center text-center">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#D4AF37]">{project.heroBadge}</p>
+            <h1 className="mt-4 text-4xl font-serif leading-tight md:text-5xl lg:text-6xl">{project.title}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">{project.shortDescription}</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <a href={project.website} target="_blank" rel="noreferrer" className="rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-black transition hover:opacity-90">
+                Visit website
+              </a>
+              <span className="rounded-full border border-white/15 px-5 py-3 text-sm uppercase tracking-[0.2em] text-white/60">
+               {project.stack.join(' • ')}
+              </span>
             </div>
           </div>
         </section>
@@ -103,7 +97,7 @@ export default function ProjectCaseStudyPage() {
         </section>
 
 
-        <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <section className="flex flex-col gap-6 lg:grid lg:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-[#D4AF37]/10 to-black p-8 md:p-10">
             <p className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">Results</p>
             <ul className="mt-5 space-y-3 text-white/75">
@@ -116,17 +110,17 @@ export default function ProjectCaseStudyPage() {
             </ul>
           </div>
 
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-8 md:p-10">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 sm:p-6 md:p-8 lg:p-10">
             <p className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">Project gallery</p>
             <div className="mt-6 overflow-hidden rounded-[1rem] border border-white/10">
               <img
                 src={project.galleryImages[activeImageIndex].src}
                 alt={project.galleryImages[activeImageIndex].alt}
-                className="h-[280px] w-full object-cover"
+                className="h-[320px] w-full object-cover sm:h-[380px] lg:h-[440px]"
               />
             </div>
 
-            <div className="mt-4 flex items-center justify-between gap-3">
+            <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex gap-2">
                 {project.galleryImages.map((image, index) => (
                   <button

@@ -265,8 +265,8 @@ export default function OriarebunPortfolio() {
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-lg mb-10 font-light">
                 Frontend Developer & UI Engineer crafting immersive digital experiences with precision, performance, and poetry.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <button onClick={() => scrollToSection("projects")} className="group relative px-8 py-3.5 bg-[#D4AF37] text-black text-xs tracking-[0.2em] uppercase font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+              <div className="flex  gap-4 mb-4">
+                <button onClick={() => scrollToSection("projects")} className="group relative px-4 py-3.5 bg-[#D4AF37] text-black text-xs tracking-[0.2em] uppercase font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
                   <span className="relative z-10">View Work</span>
                 </button>
                 <button onClick={() => scrollToSection("contact")} className="px-8 py-3.5 border border-white/20 text-xs tracking-[0.2em] uppercase hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all duration-300 backdrop-blur-md">
