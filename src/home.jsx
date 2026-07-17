@@ -173,7 +173,7 @@ export default function OriarebunPortfolio() {
   const handleMouseMove = (e) => {
     if (!dragging) return;
     e.preventDefault();
-    const x = e.pageX - .projectsRef.current.offsetLeft;
+    const x = e.pageX - projectsRef.current.offsetLeft;
     const walk = (x - startX) * 1.8;
     projectsRef.current.scrollLeft = scrollLeft - walk;
   };
