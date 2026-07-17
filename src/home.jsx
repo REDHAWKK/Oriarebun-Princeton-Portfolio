@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import ContactForm from './components/ContactForm'
 import Navbar from './components/Navbar'
 
@@ -54,6 +55,8 @@ export default function OriarebunPortfolio() {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [animatedSkillLevels, setAnimatedSkillLevels] = useState(() => skills.map(() => 0));
   const [hasAnimatedSkills, setHasAnimatedSkills] = useState(false);
+  const [displayedFirstName, setDisplayedFirstName] = useState('');
+  const [displayedLastName, setDisplayedLastName] = useState('');
 
   const projectsRef = useRef(null);
 
@@ -87,6 +90,35 @@ export default function OriarebunPortfolio() {
     );
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let timeoutId;
+    let firstIndex = 0;
+    let secondIndex = 0;
+
+    const typeFirstName = () => {
+      if (firstIndex < 9) {
+        setDisplayedFirstName('Oriarebun'.slice(0, firstIndex + 1));
+        firstIndex += 1;
+        timeoutId = setTimeout(typeFirstName, 90);
+        return;
+      }
+
+      const typeLastName = () => {
+        if (secondIndex < 9) {
+          setDisplayedLastName('Princeton'.slice(0, secondIndex + 1));
+          secondIndex += 1;
+          timeoutId = setTimeout(typeLastName, 90);
+          return;
+        }
+      };
+
+      timeoutId = setTimeout(typeLastName, 220);
+    };
+
+    timeoutId = setTimeout(typeFirstName, 220);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   useEffect(() => {
@@ -141,7 +173,7 @@ export default function OriarebunPortfolio() {
   const handleMouseMove = (e) => {
     if (!dragging) return;
     e.preventDefault();
-    const x = e.pageX - projectsRef.current.offsetLeft;
+    const x = e.pageX - .projectsRef.current.offsetLeft;
     const walk = (x - startX) * 1.8;
     projectsRef.current.scrollLeft = scrollLeft - walk;
   };
@@ -216,9 +248,19 @@ export default function OriarebunPortfolio() {
           <div className="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1 reveal" style={{ transitionDelay: '120ms' }}>
               <p className="text-[#D4AF37] text-sm tracking-[0.3em] uppercase mb-6 animate-pulse-gold">Portfolio {getCurrentYear()}</p>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] tracking-tight mb-8">
-                Oriarebun<br />
- <span className="text-[#D4AF37]">Princeton</span>
+              <h1 className="mb-8 text-5xl font-serif leading-[0.9] tracking-tight text-white md:text-7xl lg:text-8xl">
+                <span className="block">
+                  {displayedFirstName}
+                  {displayedFirstName.length < 9 && (
+                    <span className="ml-1 inline-block h-8 w-[0.5rem] animate-pulse bg-[#D4AF37] align-middle md:h-12" />
+                  )}
+                </span>
+                <span className="mt-2 block text-[#D4AF37]">
+                  {displayedLastName}
+                  {displayedLastName.length < 9 && displayedFirstName.length === 9 && (
+                    <span className="ml-1 inline-block h-8 w-[0.5rem] animate-pulse bg-[#D4AF37] align-middle md:h-12" />
+                  )}
+                </span>
               </h1>
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-lg mb-10 font-light">
                 Frontend Developer & UI Engineer crafting immersive digital experiences with precision, performance, and poetry.
@@ -319,11 +361,12 @@ export default function OriarebunPortfolio() {
                 </div>
                 <h3 className="text-2xl md:text-3xl font-serif mb-1 group-hover:text-[#D4AF37] transition-colors">{project.title}</h3>
                 <p className="text-white/40 text-sm tracking-widest uppercase mb-6">{project.category}</p>
-                <button onClick={() => alert(`In a Next.js app, this routes to /projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`)}
- className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#D4AF37] hover:gap-4 transition-all"
+                <Link
+                  to={project.title === 'OsatofoGCS' ? '/projects/osatofogcs' : '#'}
+                  className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#D4AF37] hover:gap-4 transition-all"
                 >
                   View Case Study <span className="text-lg">→</span>
-                </button>
+                </Link>
               </div>
             ))}
             <div className="flex-shrink-0 w-12 md:w-24"></div>
