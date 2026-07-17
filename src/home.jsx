@@ -238,7 +238,7 @@ export default function OriarebunPortfolio() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#D4AF37]/20 to-transparent blur-2xl animate-pulse-gold"></div>
                 <div className="absolute inset-4 rounded-full border border-[#D4AF37]/20 backdrop-blur-3xl bg-white/[0.02] flex items-center justify-center overflow-hidden">
                   <img
-                    src="/hero-img1.png"
+                    src="/image.png"
                     alt="Portrait"
                     className="w-full h-full object-cover"
                   />
