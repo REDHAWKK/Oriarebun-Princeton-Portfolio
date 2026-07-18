@@ -24,24 +24,26 @@ const skills = [
 ];
 
 const projects = [
-  { title: 'OsatofoGCS', category: 'Primary Schoool Website', img: '/osatofo.png', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'LandLink Solutions', category: 'Real Estate Website', img: '/landlink.png', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'Giant Stride School', category: 'School Website', img: '/Gss.png', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'Xalesflow', category: 'Documentation Website', img: '/xalesflow.png', tags: ['Html5', 'TailwindCss', 'Javascript', 'Firebase'] },
-  { title: 'Prema Bakery', category: 'Online Bakery Website', img: '/prema.png', tags: ['ReactJs', 'TailwindCss', 'Firebase'] },
+  { title: 'OsatofoGCS', category: 'Primary Schoool Website', img: '/osatofo.jpg', slug: 'osatofogcs', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'LandLink Solutions', category: 'Real Estate Website', img: '/landlink.jpg', slug: 'landlink-solutions', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'Giant Stride School', category: 'School Website', img: '/Gss.jpg', slug: 'giant-stride-school', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'Xalesflow', category: 'Documentation Website', img: '/xalesflow.jpg', slug: 'xalesflow', tags: ['Html5', 'TailwindCss', 'Javascript', 'Firebase'] },
+  { title: 'Prema Bakery', category: 'Online Bakery Website', img: '/prema.jpg', slug: 'prema-bakery', tags: ['ReactJs', 'TailwindCss', 'Firebase'] },
+  { title: 'Law Firm', category: 'Professional Website', img: '/law.jpg', slug: 'law-firm', tags: ['ReactJs', 'TailwindCss', 'Javascript'] },
 ];
 
 const certifications = [
-  { title: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', year: '2024' },
-  { title: 'Meta Front-End Developer', issuer: 'Meta', year: '2023' },
-  { title: 'Google UX Design Certificate', issuer: 'Google', year: '2023' },
-  { title: 'Firebase Official Partner', issuer: 'Google Firebase', year: '2024' },
+  // { title: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', year: '2024' },
+  // { title: 'Meta Front-End Developer', issuer: 'Meta', year: '2023' },
+  // { title: 'Google UX Design Certificate', issuer: 'Google', year: '2023' },
+  { title: 'Responsive Web Design', issuer: 'FreeCodeCamp', year: '2023' },
 ];
 
 const testimonials = [
-  { quote: 'Princeton has an exceptional eye for detail. He transformed our legacy dashboard into a modern, intuitive experience that our users love.', author: 'Sarah Chen', role: 'Product Lead, Vercel' },
-  { quote: 'The attention to animation and micro-interactions sets his work apart. Every pixel feels intentional.', author: 'David Okafor', role: 'CTO, Nova Logistics' },
-  { quote: 'Reliable, creative, and technically brilliant. He delivered our design system ahead of schedule with documentation that empowered our entire team.', author: 'Victoria Mercer', role: 'Design Director, Aether' },
+  { quote: 'Princeton delivered a website that truly reflects the excellence and ambition of Giant Stride School. He understood our identity as a school committed to academic achievement and competition, creating a modern platform that showcases our accomplishments while making it easy to share news and updates with parents and the wider community.', author: 'Mr. David Issa', role: 'School Administrator, Giant Stride School', image: '/david-issa.jpg' },
+  { quote: 'The attention to detail from him sets his work apart. Every page feels intentional, therefore showing our company is intentional.', author: 'Mr Igwe', role: 'CeO, LandLink Solutions', image: '/mr-igwe.jpg' },
+  { quote: 'Princeton captured the heart of our school perfectly. He delivered a beautiful, child-friendly website that reflects our values while remaining modern, intuitive, and professional. His creativity and attention to detail exceeded our expectations.', author: 'Mrs. Bridget Ogagbano', role: 'Head Teacher, Osatofo God\'s Children School', image: '/bridget.jpg' },
+  { quote: 'As a web developer myself, I appreciate clean architecture and thoughtful design. Princeton delivered both, building a polished, scalable product with excellent attention to detail.', author: 'Adeola Majiyagbe', role: 'Founder, BrightPath Studio', image: '/adeola.jpg' },
 ];
 
 export default function OriarebunPortfolio() {
@@ -59,6 +61,13 @@ export default function OriarebunPortfolio() {
   const [displayedLastName, setDisplayedLastName] = useState('');
 
   const projectsRef = useRef(null);
+  const testimonialsRef = useRef(null);
+
+  const scrollHorizontally = (ref, direction = 1) => {
+    if (!ref?.current) return;
+    const amount = window.innerWidth < 768 ? 320 : 420;
+    ref.current.scrollBy({ left: direction * amount, behavior: 'smooth' });
+  };
 
   // Scroll spy + parallax + progress
   useEffect(() => {
@@ -280,7 +289,7 @@ export default function OriarebunPortfolio() {
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#D4AF37]/20 to-transparent blur-2xl animate-pulse-gold"></div>
                 <div className="absolute inset-4 rounded-full border border-[#D4AF37]/20 backdrop-blur-3xl bg-white/[0.02] flex items-center justify-center overflow-hidden">
                   <img
-                    src="/image.png"
+                    src="/hero.jpg"
                     alt="Portrait"
                     className="w-full h-full object-cover"
                   />
@@ -324,17 +333,22 @@ export default function OriarebunPortfolio() {
 
         {/* PROJECTS — Horizontal Showcase */}
         <section id="projects" className="py-32 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 mb-16 flex justify-between items-end reveal">
+          <div className="max-w-7xl mx-auto px-6 mb-16 flex justify-between items-end gap-4 reveal">
             <div>
               <p className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase mb-4">Selected Work</p>
               <h2 className="text-4xl md:text-6xl font-serif tracking-tight">Completed Projects</h2>
               <div className="w-16 h-px bg-[#D4AF37] mt-6"></div>
             </div>
-            <div className="hidden md:flex gap-2">
-              <span className="w-12 h-px bg-white/20"></span>
-              <span className="w-12 h-px bg-[#D4AF37]"></span>
-              <span className="w-12 h-px bg-white/20"></span>
-            </div>
+            <button
+              type="button"
+              onClick={() => scrollHorizontally(projectsRef, 1)}
+              aria-label="Scroll projects right"
+              className="flex items-center justify-center h-11 w-11 rounded-full border border-[#D4AF37]/30 bg-white/[0.03] text-[#D4AF37] transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+                <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
 
           <div
@@ -362,7 +376,7 @@ export default function OriarebunPortfolio() {
                 <h3 className="text-2xl md:text-3xl font-serif mb-1 group-hover:text-[#D4AF37] transition-colors">{project.title}</h3>
                 <p className="text-white/40 text-sm tracking-widest uppercase mb-6">{project.category}</p>
                 <Link
-                  to={project.title === 'OsatofoGCS' ? '/projects/osatofogcs' : '#'}
+                  to={project.slug ? `/projects/${project.slug}` : '#'}
                   className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#D4AF37] hover:gap-4 transition-all"
                 >
                   View Case Study <span className="text-lg">→</span>
@@ -400,23 +414,40 @@ export default function OriarebunPortfolio() {
         {/* TESTIMONIALS */}
         <section id="testimonials" className="py-32">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-20 reveal">
-              <p className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase mb-4">Testimonials</p>
-              <h2 className="text-4xl md:text-6xl font-serif tracking-tight">Client Praise</h2>
-              <div className="w-16 h-px bg-[#D4AF37] mt-6"></div>
+            <div className="mb-20 flex items-end justify-between gap-4 reveal">
+              <div>
+                <p className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase mb-4">Testimonials</p>
+                <h2 className="text-4xl md:text-6xl font-serif tracking-tight">Client Praise</h2>
+                <div className="w-16 h-px bg-[#D4AF37] mt-6"></div>
+              </div>
+              <button
+                type="button"
+                onClick={() => scrollHorizontally(testimonialsRef, 1)}
+                aria-label="Scroll testimonials right"
+                className="flex items-center justify-center h-11 w-11 rounded-full border border-[#D4AF37]/30 bg-white/[0.03] text-[#D4AF37] transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+                  <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((t, i) => (
-                <div key={i} className="relative p-8 md:p-10 rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-md hover:border-[#D4AF37]/20 transition-all duration-500 reveal">
-                  <div className="text-[#D4AF37] text-5xl font-serif leading-none mb-6 opacity-40">"</div>
-                  <p className="text-white/70 leading-relaxed mb-8 text-sm md:text-base">{t.quote}</p>
-                  <div>
-                    <p className="text-white font-medium tracking-wide">{t.author}</p>
-                    <p className="text-white/30 text-xs tracking-wider uppercase mt-1">{t.role}</p>
+            <div ref={testimonialsRef} className="overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-[#D4AF37]/40 scrollbar-track-transparent">
+              <div className="flex gap-6 min-w-max pr-2 pt-2">
+                {testimonials.map((t, i) => (
+                  <div key={i} className="relative min-w-[340px] max-w-[380px] p-8 md:p-10 rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-md hover:border-[#D4AF37]/20 transition-all duration-500 reveal snap-start shadow-[0_0_40px_rgba(212,175,55,0.06)]">
+                    <div className="flex items-center gap-4 mb-6">
+                      <img src={t.image} alt={t.author} className="h-14 w-14 rounded-full object-cover ring-1 ring-[#D4AF37]/20" />
+                      <div>
+                        <p className="text-white font-medium tracking-wide">{t.author}</p>
+                        <p className="text-white/30 text-xs tracking-wider uppercase mt-1">{t.role}</p>
+                      </div>
+                    </div>
+                    <div className="text-[#D4AF37] text-5xl font-serif leading-none mb-6 opacity-40">"</div>
+                    <p className="text-white/70 leading-relaxed text-sm md:text-base">{t.quote}</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>

@@ -51,9 +51,11 @@ export default function ProjectCaseStudyPage() {
             <h1 className="mt-4 text-4xl font-serif leading-tight md:text-5xl lg:text-6xl">{project.title}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">{project.shortDescription}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href={project.website} target="_blank" rel="noreferrer" className="rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-black transition hover:opacity-90">
-                Visit website
-              </a>
+              {project.website && (
+                <a href={project.website} target="_blank" rel="noreferrer" className="rounded-full bg-[#D4AF37] px-5 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-black transition hover:opacity-90">
+                  Visit website
+                </a>
+              )}
               <span className="rounded-full border border-white/15 px-5 py-3 text-sm uppercase tracking-[0.2em] text-white/60">
                {project.stack.join(' • ')}
               </span>
@@ -116,7 +118,7 @@ export default function ProjectCaseStudyPage() {
               <img
                 src={project.galleryImages[activeImageIndex].src}
                 alt={project.galleryImages[activeImageIndex].alt}
-                className="h-[320px] w-full object-cover sm:h-[380px] lg:h-[440px]"
+                className="h-[300px] w-full object-contain sm:h-[460px] lg:h-[260px]"
               />
             </div>
 
@@ -162,7 +164,7 @@ export default function ProjectCaseStudyPage() {
             </div>
           ) : (
             <div className="mt-6 rounded-[1.25rem] border border-dashed border-white/15 bg-black/30 p-10 text-center text-white/60">
-              No available yet.
+              Not available yet.
             </div>
           )}
         </section>
