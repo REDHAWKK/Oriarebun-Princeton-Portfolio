@@ -435,7 +435,7 @@ export default function OriarebunPortfolio() {
             <div ref={testimonialsRef} className="overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth scrollbar-thin scrollbar-thumb-[#D4AF37]/40 scrollbar-track-transparent">
               <div className="flex gap-6 min-w-max pr-2 pt-2">
                 {testimonials.map((t, i) => (
-                  <div key={i} className="relative min-w-[340px] max-w-[380px] p-8 md:p-10 rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-md hover:border-[#D4AF37]/20 transition-all duration-500 reveal snap-start shadow-[0_0_40px_rgba(212,175,55,0.06)]">
+                  <div key={i} className="relative min-w-[340px] max-w-[300px] p-8 md:p-10 rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-md hover:border-[#D4AF37]/20 transition-all duration-500 reveal snap-start shadow-[0_0_40px_rgba(212,175,55,0.06)]">
                     <div className="flex items-center gap-4 mb-6">
                       <img src={t.image} alt={t.author} className="h-14 w-14 rounded-full object-cover ring-1 ring-[#D4AF37]/20" />
                       <div>

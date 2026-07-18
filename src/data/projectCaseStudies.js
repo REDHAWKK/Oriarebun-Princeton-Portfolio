@@ -43,8 +43,8 @@ export const projectCaseStudies = [
         alt: 'Classes Page',
       },
       {
-        src: '/osatofoClasses.jpg',
-        alt: 'Classes',
+        src: '/osatofoContact.jpg',
+        alt: 'Contact Page',
       },
     ],
     videoTitle: 'Video walkthrough',
