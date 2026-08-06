@@ -112,7 +112,8 @@ export const projectCaseStudies = [
       'Bright school-friendly visuals and clear messaging',
       'Sections for academics, programs, and school highlights',
       'Responsive experience built for parents on the go',
-      'Simple structure focused on clarity and trust',
+      'A dedicated page for publishing news and updates about the school',
+      'A dedicated page for Online Admissions',
     ],
     results: [
       'Gave the school a stronger online first impression',
@@ -127,8 +128,8 @@ export const projectCaseStudies = [
       { src: '/GssNews.jpg', alt: 'News' },
     ],
     videoTitle: 'Video walkthrough',
-    videoDescription: 'A short walkthrough can be added here when the school provides a design or product video.',
-    videoUrl: '',
+    videoDescription: 'A short walk-through of the website.',
+    videoUrl: '/GssVid1.mp4',
   },
   {
     slug: 'xalesflow',

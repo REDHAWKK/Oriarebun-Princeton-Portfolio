@@ -6,3 +6,6 @@ body {
 button {
     cursor: pointer;
 }
+.horizontal-scroll-indicator{
+    background:red !important;
+}

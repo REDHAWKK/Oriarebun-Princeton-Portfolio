@@ -24,7 +24,7 @@ function AppRoutes() {
     <>
       {isLoading && <PageLoader />}
       <Routes>
-        <Route path="/" element={<OriarebunPortfolio />} />
+        <Route path="/" element={<OriarebunPortfolio hasLoaded={!isLoading} />} />
         <Route path="/projects/:slug" element={<ProjectCaseStudyPage />} />
       </Routes>
     </>

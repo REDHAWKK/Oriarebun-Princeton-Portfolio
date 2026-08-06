@@ -159,8 +159,12 @@ export default function ProjectCaseStudyPage() {
           <p className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">{project.videoTitle}</p>
           <p className="mt-4 text-lg leading-8 text-white/70">{project.videoDescription}</p>
           {project.videoUrl ? (
-            <div className="mt-6 overflow-hidden rounded-[1.25rem] border border-white/10 bg-black/50">
-              <video controls className="h-full w-full" src={project.videoUrl} />
+            <div className="mt-6 overflow-hidden rounded-[1.25rem] border border-white/10 bg-black/50 p-4">
+              <video
+                controls
+                className="mx-auto h-auto max-h-[70vh] w-auto max-w-full object-contain"
+                src={project.videoUrl}
+              />
             </div>
           ) : (
             <div className="mt-6 rounded-[1.25rem] border border-dashed border-white/15 bg-black/30 p-10 text-center text-white/60">

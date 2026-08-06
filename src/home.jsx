@@ -26,7 +26,7 @@ const skills = [
 const projects = [
   { title: 'OsatofoGCS', category: 'Primary Schoool Website', img: '/osatofo.jpg', slug: 'osatofogcs', tags: ['Html5', 'TailwindCss', 'Javascript'] },
   { title: 'LandLink Solutions', category: 'Real Estate Website', img: '/landlink.jpg', slug: 'landlink-solutions', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'Giant Stride School', category: 'School Website', img: '/Gss.jpg', slug: 'giant-stride-school', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'Giant Stride School', category: 'School Website', img: '/Gss.png', slug: 'giant-stride-school', tags: ['Html5', 'TailwindCss', 'Javascript'] },
   { title: 'Xalesflow', category: 'Documentation Website', img: '/xalesflow.jpg', slug: 'xalesflow', tags: ['Html5', 'TailwindCss', 'Javascript', 'Firebase'] },
   { title: 'Prema Bakery', category: 'Online Bakery Website', img: '/prema.jpg', slug: 'prema-bakery', tags: ['ReactJs', 'TailwindCss', 'Firebase'] },
   { title: 'Law Firm', category: 'Professional Website', img: '/law.jpg', slug: 'law-firm', tags: ['ReactJs', 'TailwindCss', 'Javascript'] },
@@ -46,7 +46,7 @@ const testimonials = [
   { quote: 'As a web developer myself, I appreciate clean architecture and thoughtful design. Princeton delivered both, building a polished, scalable product with excellent attention to detail.', author: 'Adeola Majiyagbe', role: 'Founder, BrightPath Studio', image: '/adeola.jpg' },
 ];
 
-export default function OriarebunPortfolio() {
+export default function OriarebunPortfolio({ hasLoaded = false }) {
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -57,6 +57,7 @@ export default function OriarebunPortfolio() {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [animatedSkillLevels, setAnimatedSkillLevels] = useState(() => skills.map(() => 0));
   const [hasAnimatedSkills, setHasAnimatedSkills] = useState(false);
+  const [animateProjectScrollHint, setAnimateProjectScrollHint] = useState(false);
   const [displayedFirstName, setDisplayedFirstName] = useState('');
   const [displayedLastName, setDisplayedLastName] = useState('');
 
@@ -172,7 +173,26 @@ export default function OriarebunPortfolio() {
     observer.observe(section);
     return () => observer.disconnect();
   }, [hasAnimatedSkills]);
-
+  useEffect(() => {
+    const section = document.getElementById("projects");
+    if (!section) return;
+  
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimateProjectScrollHint(true);
+          observer.disconnect(); // only once
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+  
+    observer.observe(section);
+  
+    return () => observer.disconnect();
+  }, []);
   // Project drag scroll
   const handleMouseDown = (e) => {
     setDragging(true);
@@ -225,10 +245,22 @@ export default function OriarebunPortfolio() {
           0%, 100% { opacity: 0.3; }
           50% { opacity: 0.6; }
         }
+        @keyframes contact-button-sweep {
+          0% { transform: translateX(-130%); opacity: 0; }
+          12% { opacity: 1; }
+          78% { opacity: 1; }
+          100% { transform: translateX(230%); opacity: 0; }
+        }
         .animate-float { animation: float 12s ease-in-out infinite; }
         .animate-float-slow { animation: float-slow 18s ease-in-out infinite; }
         .animate-float-delayed { animation: float 14s ease-in-out infinite reverse; }
         .animate-pulse-gold { animation: pulse-gold 6s ease-in-out infinite; }
+        .contact-button-sweep {
+          animation: contact-button-sweep 1.25s cubic-bezier(0.22, 1, 0.36, 1) 3 both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .contact-button-sweep { animation: none; }
+        }
       `}</style>
 
       {/* Scroll Progress */}
@@ -278,9 +310,10 @@ export default function OriarebunPortfolio() {
                 <button onClick={() => scrollToSection("projects")} className="group relative px-4 py-3.5 bg-[#D4AF37] text-black text-xs tracking-[0.2em] uppercase font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
                   <span className="relative z-10">View Work</span>
                 </button>
-                <button onClick={() => scrollToSection("contact")} className="px-8 py-3.5 border border-white/20 text-xs tracking-[0.2em] uppercase hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all duration-300 backdrop-blur-md">
-                  Contact Me
- </button>
+                <button onClick={() => scrollToSection("contact")} className="group relative overflow-hidden px-8 py-3.5 border border-white/20 text-xs tracking-[0.2em] uppercase hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all duration-300 backdrop-blur-md">
+                  <span aria-hidden="true" className={`${hasLoaded ? 'contact-button-sweep' : ''} pointer-events-none absolute inset-y-0 left-0 w-2/3 -skew-x-12 bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent`} />
+                  <span className="relative">Contact Me</span>
+                </button>
               </div>
             </div>
 
@@ -343,7 +376,7 @@ export default function OriarebunPortfolio() {
               type="button"
               onClick={() => scrollHorizontally(projectsRef, 1)}
               aria-label="Scroll projects right"
-              className="flex items-center justify-center h-11 w-11 rounded-full border border-[#D4AF37]/30 bg-white/[0.03] text-[#D4AF37] transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
+className={`flex items-center justify-center h-11 w-11 rounded-full border border-[#D4AF37]/30 bg-white/[0.03] text-[#D4AF37] transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 ${animateProjectScrollHint ? "horizontal-scroll-indicator" : ""}`}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
                 <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
