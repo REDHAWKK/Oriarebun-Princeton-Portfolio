@@ -1,5 +1,42 @@
 export const projectCaseStudies = [
   {
+    slug: 'gods-own-concept',
+    title: "God's Own Concept",
+    client: "God's Own Concept",
+    website: 'https://god-s-own-concept.vercel.app/',
+    year: '2026',
+    heroBadge: 'Creative Digital Agency Website',
+    stack: ['ReactJs', 'TailwindCSS', 'Javascript'],
+    shortDescription:
+      'A distinctive website for a Nigerian creative digital agency, built to communicate its services, point of view, and growth-focused approach.',
+    summary:
+      "I created a bold, polished web presence for God's Own Concept that positions the agency as a trusted growth partner for ambitious brands.",
+    challenge:
+      'The agency needed an expressive digital home that could present a broad creative offering while still making it easy for prospective clients to understand the value and start a conversation.',
+    approach:
+      'I combined confident typography, expressive visuals, and a clear service structure to create an experience that feels creative, credible, and easy to navigate.',
+    overview:
+      "The site introduces God's Own Concept through its purpose, values, services, and collaborative process. It gives startups, SMEs, churches, NGOs, creators, and teams a clear route to explore the agency and submit a project request.",
+    features: [
+      'Clear positioning for a creative digital agency and growth partner',
+      'Service sections covering branding, digital experiences, content and motion, and AI-powered creativity',
+      'Responsive navigation and a project-request contact form',
+      'A structured discovery-to-support process that explains how the agency works',
+    ],
+    results: [
+      'Delivered a memorable online identity that reflects the agency’s creative direction',
+      'Made the agency’s services and value proposition easier for prospective clients to understand',
+      'Created a direct path for visitors to begin a project conversation',
+    ],
+    coverImage: "/god's-own-concept.png",
+    galleryImages: [
+      { src: "/god's-own-concept.png", alt: "God's Own Concept website preview" },
+    ],
+    videoTitle: 'Video walkthrough',
+    videoDescription: 'A short walkthrough can be added when branded media becomes available.',
+    videoUrl: '',
+  },
+  {
     slug: 'osatofogcs',
     title: "Osatofo God's Children School",
     client: "Osatofo God's Children School",

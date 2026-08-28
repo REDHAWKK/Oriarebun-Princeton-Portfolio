@@ -24,10 +24,14 @@ const skills = [
 ];
 
 const projects = [
-  { title: 'OsatofoGCS', category: 'Primary Schoool Website', img: '/osatofo.jpg', slug: 'osatofogcs', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'LandLink Solutions', category: 'Real Estate Website', img: '/landlink.jpg', slug: 'landlink-solutions', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'Giant Stride School', category: 'School Website', img: '/Gss.png', slug: 'giant-stride-school', tags: ['Html5', 'TailwindCss', 'Javascript'] },
-  { title: 'Xalesflow', category: 'Documentation Website', img: '/xalesflow.jpg', slug: 'xalesflow', tags: ['Html5', 'TailwindCss', 'Javascript', 'Firebase'] },
+  { title: "God's Own Concept", category: 'Website for a Creative Digital Agency', img: "/god's-own-concept.png", slug: 'gods-own-concept', tags: ['ReactJs', 'TailwindCss', 'Javascript'] },
+  { title: 'OsatofoGCS', category: 'Website for a Primary School', img: '/osatofo.png', slug: 'osatofogcs', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'LandLink Solutions', category: 'Website for a Real Estate Company', img: '/landlink.png', slug: 'landlink-solutions', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'Giant Stride School', category: 'Website for a Secondary School', img: '/Gss.png', slug: 'giant-stride-school', tags: ['Html5', 'TailwindCss', 'Javascript'] },
+  { title: 'Xalesflow', category: 'Documentation Website For XalesFlow App', img: '/xalesflow.png', slug: 'xalesflow', tags: ['Html5', 'TailwindCss', 'Javascript', 'Firebase'] },
+];
+
+const demoProjects = [
   { title: 'Prema Bakery', category: 'Online Bakery Website', img: '/prema.jpg', slug: 'prema-bakery', tags: ['ReactJs', 'TailwindCss', 'Firebase'] },
   { title: 'Law Firm', category: 'Professional Website', img: '/law.jpg', slug: 'law-firm', tags: ['ReactJs', 'TailwindCss', 'Javascript'] },
 ];
@@ -58,6 +62,8 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
   const [animatedSkillLevels, setAnimatedSkillLevels] = useState(() => skills.map(() => 0));
   const [hasAnimatedSkills, setHasAnimatedSkills] = useState(false);
   const [animateProjectScrollHint, setAnimateProjectScrollHint] = useState(false);
+  const [completedProjectsCount, setCompletedProjectsCount] = useState(0);
+  const [hasAnimatedProjectCount, setHasAnimatedProjectCount] = useState(false);
   const [displayedFirstName, setDisplayedFirstName] = useState('');
   const [displayedLastName, setDisplayedLastName] = useState('');
 
@@ -181,6 +187,22 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
       ([entry]) => {
         if (entry.isIntersecting) {
           setAnimateProjectScrollHint(true);
+          if (!hasAnimatedProjectCount) {
+            setHasAnimatedProjectCount(true);
+
+            const target = projects.length;
+            const duration = 2400;
+            const startTime = performance.now();
+
+            const tick = (now) => {
+              const progress = Math.min(1, (now - startTime) / duration);
+              setCompletedProjectsCount(Math.round(target * (1 - Math.pow(1 - progress, 3))));
+
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+
+            requestAnimationFrame(tick);
+          }
           observer.disconnect(); // only once
         }
       },
@@ -192,7 +214,7 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
     observer.observe(section);
   
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimatedProjectCount]);
   // Project drag scroll
   const handleMouseDown = (e) => {
     setDragging(true);
@@ -369,7 +391,15 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
           <div className="max-w-7xl mx-auto px-6 mb-16 flex justify-between items-end gap-4 reveal">
             <div>
               <p className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase mb-4">Selected Work</p>
-              <h2 className="text-4xl md:text-6xl font-serif tracking-tight">Completed Projects</h2>
+              <div className="flex items-center gap-4 md:gap-6">
+                <h2 className="text-4xl md:text-6xl font-serif tracking-tight">Paid Projects</h2>
+                <span
+                  className="text-3xl md:text-5xl font-serif text-[#D4AF37] tabular-nums"
+                  aria-label={`${completedProjectsCount} completed projects`}
+                >
+                  {completedProjectsCount}
+                </span>
+              </div>
               <div className="w-16 h-px bg-[#D4AF37] mt-6"></div>
             </div>
             <button
@@ -417,6 +447,46 @@ className={`flex items-center justify-center h-11 w-11 rounded-full border borde
               </div>
             ))}
             <div className="flex-shrink-0 w-12 md:w-24"></div>
+          </div>
+        </section>
+
+        {/* DEMO PROJECTS */}
+        <section className="pb-32 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="mb-16 reveal">
+              <p className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase mb-4">Concept Work</p>
+              <h2 className="text-4xl md:text-6xl font-serif tracking-tight">Demo Projects</h2>
+              <p className="text-white/50 mt-5 max-w-xl">Independent concepts created to explore design, development, and user-experience ideas.</p>
+              <div className="w-16 h-px bg-[#D4AF37] mt-6"></div>
+            </div>
+
+            <div
+              className="flex gap-5 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {demoProjects.map((project) => (
+                <div key={project.slug} className="group reveal flex-shrink-0 w-[72vw] max-w-[340px] md:w-[360px] snap-start">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/[0.06] mb-4">
+                    <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+                    <span className="absolute top-4 left-4 px-3 py-1 text-[10px] tracking-wider uppercase bg-[#D4AF37] text-black font-semibold rounded-full">Demo</span>
+                    <div className="absolute top-4 right-4 flex gap-2">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="px-3 py-1 text-[10px] tracking-wider uppercase bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white/70">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-serif mb-1 group-hover:text-[#D4AF37] transition-colors">{project.title}</h3>
+                  <p className="text-white/40 text-xs tracking-widest uppercase mb-4">{project.category}</p>
+                  <Link to={`/projects/${project.slug}`} className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[#D4AF37] hover:gap-4 transition-all">
+                    View Demo <span className="text-lg">â†’</span>
+                  </Link>
+                </div>
+              ))}
+              <div className="flex-shrink-0 w-1" aria-hidden="true"></div>
+            </div>
           </div>
         </section>
 
