@@ -37,7 +37,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
+    <section id="contact" className="pt-16 pb-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black"></div>
 
@@ -55,8 +55,8 @@ export default function ContactForm() {
               <input required type="text" name="name" className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#D4AF37]/50 focus:bg-white/[0.05] transition-all" placeholder="Your name" />
             </div>
             <div className="group">
-              <label className="block text-[10px] tracking-[0.2em] uppercase text-white/40 mb-2 group-focus-within:text-[#D4AF37] transition-colors">Email</label>
-              <input required type="email" name="email" className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#D4AF37]/50 focus:bg-white/[0.05] transition-all" placeholder="you@company.com" />
+              <label className="block text-[10px] tracking-[0.2em] uppercase text-white/40 mb-2 group-focus-within:text-[#D4AF37] transition-colors">Phone Number (Preferably Whatsapp)</label>
+              <input required type="tel" name="phone" className="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#D4AF37]/50 focus:bg-white/[0.05] transition-all" placeholder="+234 800 000 0000" />
             </div>
           </div>
           <div className="group">

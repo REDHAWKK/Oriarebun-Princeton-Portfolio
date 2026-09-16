@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import ContactForm from './components/ContactForm'
 import Navbar from './components/Navbar'
 
 const getCurrentYear = () => new Date().getFullYear();
@@ -11,7 +10,7 @@ const navItems = [
   { id: 'projects', label: 'Work' },
   { id: 'certifications', label: 'Certs' },
   { id: 'testimonials', label: 'Praise' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'contact', label: 'Contact', path: '/contact' },
 ];
 
 const skills = [
@@ -55,7 +54,6 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -230,12 +228,6 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
   };
   const handleMouseUp = () => setDragging(false);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-  };
-
   const scrollToSection = (id) => {
     setMobileOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -332,10 +324,10 @@ export default function OriarebunPortfolio({ hasLoaded = false }) {
                 <button onClick={() => scrollToSection("projects")} className="group relative px-4 py-3.5 bg-[#D4AF37] text-black text-xs tracking-[0.2em] uppercase font-semibold overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
                   <span className="relative z-10">View Work</span>
                 </button>
-                <button onClick={() => scrollToSection("contact")} className="group relative overflow-hidden px-8 py-3.5 border border-white/20 text-xs tracking-[0.2em] uppercase hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all duration-300 backdrop-blur-md">
+                <Link to="/contact" className="group relative overflow-hidden px-8 py-3.5 border border-white/20 text-xs tracking-[0.2em] uppercase hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all duration-300 backdrop-blur-md">
                   <span aria-hidden="true" className={`${hasLoaded ? 'contact-button-sweep' : ''} pointer-events-none absolute inset-y-0 left-0 w-2/3 -skew-x-12 bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent`} />
                   <span className="relative">Contact Me</span>
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -554,9 +546,6 @@ className={`flex items-center justify-center h-11 w-11 rounded-full border borde
             </div>
           </div>
         </section>
-
-        {/* CONTACT */}
-        <ContactForm />
 
         {/* FOOTER */}
         <footer className="relative z-10 border-t border-white/[0.06] py-12 bg-black">

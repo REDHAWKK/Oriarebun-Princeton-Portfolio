@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import './index.css'
 import OriarebunPortfolio from './home.jsx'
 import ProjectCaseStudyPage from './pages/ProjectCaseStudyPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 import PageLoader from './components/PageLoader.jsx'
 
 function AppRoutes() {
@@ -25,6 +26,7 @@ function AppRoutes() {
       {isLoading && <PageLoader />}
       <Routes>
         <Route path="/" element={<OriarebunPortfolio hasLoaded={!isLoading} />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/projects/:slug" element={<ProjectCaseStudyPage />} />
       </Routes>
     </>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oriarebun-princeton-portfolio.vercel.app/sitemap.xml
